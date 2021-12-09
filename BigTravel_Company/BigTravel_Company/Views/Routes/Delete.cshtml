@@ -1,0 +1,42 @@
+﻿@model BigTravel_Company.Models.Route
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<div class="search_turs">
+    <h2 class="our-services__tle our-services__title--liner_hot ">
+        Удалить маршрут
+    </h2>
+</div>
+
+<div class="container">
+    <div class="offers">
+        <div class="offer">
+            <div class="offer__header">
+                <h2 class="offer__title">
+                    @Html.DisplayFor(model => model.Place)
+                </h2>
+            </div>
+            <div class="offer__body">
+                <div class="offer__body-img">
+                    <img src="~/Content/image/route/@Html.DisplayFor(model => model.Place_image)" />
+                </div>
+                <div class="offer__body-content">
+                    <b>Страна назначения:</b> @Html.DisplayFor(model => model.Country.Name_country) <br />
+                    <b>Описание:</b> @Html.DisplayFor(model => model.Place_description)<br />
+                </div>
+            </div>
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+                <div class="but_reis_content_butt">
+                    <input type="submit" value="Удалить" class="save_edit_reis" />
+                    <div class="Save_reis">
+                        <a class="back_reis button_back" href="/Routes/Index"><span>&#8594;</span>Назад<span>&#8592;</span></a>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>

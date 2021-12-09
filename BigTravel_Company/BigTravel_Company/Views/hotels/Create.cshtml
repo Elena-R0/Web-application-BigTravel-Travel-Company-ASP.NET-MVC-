@@ -1,0 +1,60 @@
+﻿@model BigTravel_Company.Models.hotel
+@Styles.Render("~/Content/edit_inf.css")
+@{
+    ViewBag.Title = "Create";
+}
+@Scripts.Render("~/Scripts/validated.js")
+@Scripts.Render("~/Scripts/Podkl-file.js")
+
+
+<script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
+<div class="container">
+    @using (Html.BeginForm("Create", "hotels", FormMethod.Post, new { id = "hotels", enctype = "multipart/form-data" }))
+    {
+        @Html.AntiForgeryToken()
+    <form class="contact_form" action="#" method="post" name="contact_form">
+        <h2 class="reis_name_inf">Создание информации об отелях</h2>
+        @Html.ValidationSummary(true, "", new { @class = "error_vouchers_name_description" })
+
+
+        <ul class="contact_form-list">
+            <li>
+                @Html.LabelFor(model => model.Namehotel, "Название отеля", htmlAttributes: new { @class = "num_reis" })
+                <div class="cont_inf">
+                    @Html.EditorFor(model => model.Namehotel, new { htmlAttributes = new { @class = "Punkt_otp hotel_content" } })
+                    @Html.ValidationMessageFor(model => model.Namehotel, "", new { @class = " num_reis" })
+                </div>
+            </li>
+            <li>
+                @Html.LabelFor(model => model.image, "Название фото", htmlAttributes: new { @class = "num_reis" })
+                <div class="fileform cont_inf" id="divfile">
+                    <div id="fileformlabel"></div>
+                    <div class="selectbutton">Обзор</div>
+                    @Html.EditorFor(model => model.image, new { htmlAttributes = new { type = "file", onchange = "getName(this.value);", accept = ".jpg, .jpeg, .png" } })
+                    @Html.ValidationMessageFor(model => model.image, "", new { @class = "num_reis" })
+                </div>
+            </li>
+            <li>
+                @Html.LabelFor(model => model.description_hotel, "Описание отеля", htmlAttributes: new { @class = "num_reis" })
+                <div class="cont_inf">
+                    @Html.TextAreaFor(model => model.description_hotel, 7, 75, new { @class = "Punkt_otp" })
+                    @Html.ValidationMessageFor(model => model.description_hotel, "", new { @class = "num_reis" })
+                </div>
+            </li>
+            <li class="button_inf">
+                <div class="but_reis_content">
+                    <input type="submit" value="Сохранить" class="save_edit_reis" id="Hotelt" />
+                    <div class="Save_reis">
+                        <a class="back_reis button_back" href="/hotels/Index"><span>&#8594;</span>Назад<span>&#8592;</span></a>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </form>
+    }
+
+    @section Scripts {
+        @Scripts.Render("~/bundles/jqueryval")
+    }
+</div>
+

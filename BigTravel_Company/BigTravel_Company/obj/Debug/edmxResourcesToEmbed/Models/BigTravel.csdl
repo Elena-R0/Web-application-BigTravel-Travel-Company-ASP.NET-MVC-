@@ -1,0 +1,367 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="BigTravelModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Country">
+    <Key>
+      <PropertyRef Name="id_country" />
+    </Key>
+    <Property Name="id_country" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name_country" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="Description_country" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="image" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Route" Relationship="Self.FK_Route_Country" FromRole="Country" ToRole="Route" />
+  </EntityType>
+  <EntityType Name="Customer">
+    <Key>
+      <PropertyRef Name="id_customer" />
+    </Key>
+    <Property Name="id_customer" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Series" Type="String" MaxLength="4" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Number" Type="String" MaxLength="6" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="sername" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="name" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="patronymic" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="date_of_birth" Type="DateTime" Precision="0" />
+    <Property Name="adress" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="phone" Type="String" MaxLength="11" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Orders" Relationship="Self.FK_Orders_Customer" FromRole="Customer" ToRole="Orders" />
+    <NavigationProperty Name="Payment" Relationship="Self.FK_Payment_Customer" FromRole="Customer" ToRole="Payment" />
+  </EntityType>
+  <EntityType Name="Employes">
+    <Key>
+      <PropertyRef Name="id_employes" />
+    </Key>
+    <Property Name="id_employes" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="sername" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="name" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="patronymic" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="date_of_birth" Type="DateTime" Precision="0" />
+    <Property Name="salary" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="phone" Type="String" MaxLength="11" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Orders" Relationship="Self.FK_Orders_Employes" FromRole="Employes" ToRole="Orders" />
+  </EntityType>
+  <EntityType Name="hotel">
+    <Key>
+      <PropertyRef Name="id_hotel" />
+    </Key>
+    <Property Name="id_hotel" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Namehotel" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="image" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="description_hotel" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Vouchers" Relationship="Self.FK_Vouchers_hotel" FromRole="hotel" ToRole="Vouchers" />
+  </EntityType>
+  <EntityType Name="Order_status">
+    <Key>
+      <PropertyRef Name="idOrder_status" />
+    </Key>
+    <Property Name="idOrder_status" Type="Int32" Nullable="false" />
+    <Property Name="NameStatus" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Orders" Relationship="Self.FK_Orders_Order_status" FromRole="Order_status" ToRole="Orders" />
+  </EntityType>
+  <EntityType Name="Orders">
+    <Key>
+      <PropertyRef Name="id_orders" />
+    </Key>
+    <Property Name="id_orders" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="id_customer" Type="Int32" Nullable="false" />
+    <Property Name="id_employes" Type="Int32" Nullable="false" />
+    <Property Name="id_vouchers" Type="Int32" Nullable="false" />
+    <Property Name="Date_registration" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="Number" Type="Int32" />
+    <Property Name="idOrder_status" Type="Int32" />
+    <NavigationProperty Name="Customer" Relationship="Self.FK_Orders_Customer" FromRole="Orders" ToRole="Customer" />
+    <NavigationProperty Name="Employes" Relationship="Self.FK_Orders_Employes" FromRole="Orders" ToRole="Employes" />
+    <NavigationProperty Name="Order_status" Relationship="Self.FK_Orders_Order_status" FromRole="Orders" ToRole="Order_status" />
+    <NavigationProperty Name="Vouchers" Relationship="Self.FK_Orders_Vouchers" FromRole="Orders" ToRole="Vouchers" />
+    <NavigationProperty Name="Payment" Relationship="Self.FK_Payment_Orders" FromRole="Orders" ToRole="Payment" />
+    <NavigationProperty Name="reis" Relationship="Self.FK_reis_Orders" FromRole="Orders" ToRole="reis" />
+  </EntityType>
+  <EntityType Name="Payment">
+    <Key>
+      <PropertyRef Name="idPayment" />
+    </Key>
+    <Property Name="idPayment" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="id_customer" Type="Int32" />
+    <Property Name="id_orders" Type="Int32" />
+    <Property Name="bank_card_num" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="date_payment" Type="DateTime" Precision="0" />
+    <Property Name="Id_PayType" Type="Int32" />
+    <NavigationProperty Name="Customer" Relationship="Self.FK_Payment_Customer" FromRole="Payment" ToRole="Customer" />
+    <NavigationProperty Name="Orders" Relationship="Self.FK_Payment_Orders" FromRole="Payment" ToRole="Orders" />
+    <NavigationProperty Name="PayType" Relationship="Self.FK_Payment_PayType" FromRole="Payment" ToRole="PayType" />
+  </EntityType>
+  <EntityType Name="PayType">
+    <Key>
+      <PropertyRef Name="Id_PayType" />
+    </Key>
+    <Property Name="Id_PayType" Type="Int32" Nullable="false" />
+    <Property Name="Name_PayType" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Payment" Relationship="Self.FK_Payment_PayType" FromRole="PayType" ToRole="Payment" />
+  </EntityType>
+  <EntityType Name="reis">
+    <Key>
+      <PropertyRef Name="id_reis" />
+    </Key>
+    <Property Name="id_reis" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="id_order" Type="Int32" />
+    <Property Name="Point_departure" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="Destination" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="Departure_date" Type="DateTime" Precision="3" />
+    <Property Name="Date_arrival" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="Orders" Relationship="Self.FK_reis_Orders" FromRole="reis" ToRole="Orders" />
+  </EntityType>
+  <EntityType Name="Route">
+    <Key>
+      <PropertyRef Name="id_route" />
+    </Key>
+    <Property Name="id_route" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="id_country" Type="Int32" />
+    <Property Name="Place" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Place_description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Place_image" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Country" Relationship="Self.FK_Route_Country" FromRole="Route" ToRole="Country" />
+    <NavigationProperty Name="Vouchers" Relationship="Self.FK_Vouchers_Route" FromRole="Route" ToRole="Vouchers" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="Vouchers">
+    <Key>
+      <PropertyRef Name="id_vouchers" />
+    </Key>
+    <Property Name="id_vouchers" Type="Int32" Nullable="false" />
+    <Property Name="name_vouchers" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="id_route" Type="Int32" />
+    <Property Name="id_hotel" Type="Int32" />
+    <Property Name="Departure_date" Type="DateTime" Precision="0" />
+    <Property Name="Date_arrival" Type="DateTime" Precision="0" />
+    <Property Name="Information_vouchers" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Excursions" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="image" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Cost" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="number_trips" Type="Int32" />
+    <NavigationProperty Name="hotel" Relationship="Self.FK_Vouchers_hotel" FromRole="Vouchers" ToRole="hotel" />
+    <NavigationProperty Name="Orders" Relationship="Self.FK_Orders_Vouchers" FromRole="Vouchers" ToRole="Orders" />
+    <NavigationProperty Name="Route" Relationship="Self.FK_Vouchers_Route" FromRole="Vouchers" ToRole="Route" />
+  </EntityType>
+  <Association Name="FK_Route_Country">
+    <End Role="Country" Type="Self.Country" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Route" Type="Self.Route" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Country">
+        <PropertyRef Name="id_country" />
+      </Principal>
+      <Dependent Role="Route">
+        <PropertyRef Name="id_country" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Orders_Customer">
+    <End Role="Customer" Type="Self.Customer" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Orders" Type="Self.Orders" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Customer">
+        <PropertyRef Name="id_customer" />
+      </Principal>
+      <Dependent Role="Orders">
+        <PropertyRef Name="id_customer" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Payment_Customer">
+    <End Role="Customer" Type="Self.Customer" Multiplicity="0..1" />
+    <End Role="Payment" Type="Self.Payment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Customer">
+        <PropertyRef Name="id_customer" />
+      </Principal>
+      <Dependent Role="Payment">
+        <PropertyRef Name="id_customer" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Orders_Employes">
+    <End Role="Employes" Type="Self.Employes" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Orders" Type="Self.Orders" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Employes">
+        <PropertyRef Name="id_employes" />
+      </Principal>
+      <Dependent Role="Orders">
+        <PropertyRef Name="id_employes" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Vouchers_hotel">
+    <End Role="hotel" Type="Self.hotel" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Vouchers" Type="Self.Vouchers" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="hotel">
+        <PropertyRef Name="id_hotel" />
+      </Principal>
+      <Dependent Role="Vouchers">
+        <PropertyRef Name="id_hotel" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Orders_Order_status">
+    <End Role="Order_status" Type="Self.Order_status" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Orders" Type="Self.Orders" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Order_status">
+        <PropertyRef Name="idOrder_status" />
+      </Principal>
+      <Dependent Role="Orders">
+        <PropertyRef Name="idOrder_status" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Orders_Vouchers">
+    <End Role="Vouchers" Type="Self.Vouchers" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Orders" Type="Self.Orders" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Vouchers">
+        <PropertyRef Name="id_vouchers" />
+      </Principal>
+      <Dependent Role="Orders">
+        <PropertyRef Name="id_vouchers" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Payment_Orders">
+    <End Role="Orders" Type="Self.Orders" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Payment" Type="Self.Payment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Orders">
+        <PropertyRef Name="id_orders" />
+      </Principal>
+      <Dependent Role="Payment">
+        <PropertyRef Name="id_orders" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_reis_Orders">
+    <End Role="Orders" Type="Self.Orders" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="reis" Type="Self.reis" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Orders">
+        <PropertyRef Name="id_orders" />
+      </Principal>
+      <Dependent Role="reis">
+        <PropertyRef Name="id_order" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Payment_PayType">
+    <End Role="PayType" Type="Self.PayType" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Payment" Type="Self.Payment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PayType">
+        <PropertyRef Name="Id_PayType" />
+      </Principal>
+      <Dependent Role="Payment">
+        <PropertyRef Name="Id_PayType" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Vouchers_Route">
+    <End Role="Route" Type="Self.Route" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Vouchers" Type="Self.Vouchers" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Route">
+        <PropertyRef Name="id_route" />
+      </Principal>
+      <Dependent Role="Vouchers">
+        <PropertyRef Name="id_route" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="BigTravelEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Country" EntityType="Self.Country" />
+    <EntitySet Name="Customer" EntityType="Self.Customer" />
+    <EntitySet Name="Employes" EntityType="Self.Employes" />
+    <EntitySet Name="hotel" EntityType="Self.hotel" />
+    <EntitySet Name="Order_status" EntityType="Self.Order_status" />
+    <EntitySet Name="Orders" EntityType="Self.Orders" />
+    <EntitySet Name="Payment" EntityType="Self.Payment" />
+    <EntitySet Name="PayType" EntityType="Self.PayType" />
+    <EntitySet Name="reis" EntityType="Self.reis" />
+    <EntitySet Name="Route" EntityType="Self.Route" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+    <EntitySet Name="Vouchers" EntityType="Self.Vouchers" />
+    <AssociationSet Name="FK_Route_Country" Association="Self.FK_Route_Country">
+      <End Role="Country" EntitySet="Country" />
+      <End Role="Route" EntitySet="Route" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Orders_Customer" Association="Self.FK_Orders_Customer">
+      <End Role="Customer" EntitySet="Customer" />
+      <End Role="Orders" EntitySet="Orders" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Payment_Customer" Association="Self.FK_Payment_Customer">
+      <End Role="Customer" EntitySet="Customer" />
+      <End Role="Payment" EntitySet="Payment" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Orders_Employes" Association="Self.FK_Orders_Employes">
+      <End Role="Employes" EntitySet="Employes" />
+      <End Role="Orders" EntitySet="Orders" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Vouchers_hotel" Association="Self.FK_Vouchers_hotel">
+      <End Role="hotel" EntitySet="hotel" />
+      <End Role="Vouchers" EntitySet="Vouchers" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Orders_Order_status" Association="Self.FK_Orders_Order_status">
+      <End Role="Order_status" EntitySet="Order_status" />
+      <End Role="Orders" EntitySet="Orders" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Orders_Vouchers" Association="Self.FK_Orders_Vouchers">
+      <End Role="Vouchers" EntitySet="Vouchers" />
+      <End Role="Orders" EntitySet="Orders" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Payment_Orders" Association="Self.FK_Payment_Orders">
+      <End Role="Orders" EntitySet="Orders" />
+      <End Role="Payment" EntitySet="Payment" />
+    </AssociationSet>
+    <AssociationSet Name="FK_reis_Orders" Association="Self.FK_reis_Orders">
+      <End Role="Orders" EntitySet="Orders" />
+      <End Role="reis" EntitySet="reis" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Payment_PayType" Association="Self.FK_Payment_PayType">
+      <End Role="PayType" EntitySet="PayType" />
+      <End Role="Payment" EntitySet="Payment" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Vouchers_Route" Association="Self.FK_Vouchers_Route">
+      <End Role="Route" EntitySet="Route" />
+      <End Role="Vouchers" EntitySet="Vouchers" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

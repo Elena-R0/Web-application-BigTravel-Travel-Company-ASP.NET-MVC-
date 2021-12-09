@@ -1,0 +1,65 @@
+﻿@model IEnumerable<BigTravel_Company.Models.Employes>
+@Styles.Render("~/Content/Tables.css")
+@{
+    ViewBag.Title = "Index";
+}
+<div class="search_turs">
+    <h2 class="our-services__tle our-services__title--liner_hot">
+        Информация по сотрудникам
+    </h2>
+</div>
+<div class="container_table">
+    <table class="table_reis order">
+        <tr class="order_thead">
+            <th class="order_thead">
+                ФИО
+            </th>
+            <th class="order_thead">
+                Дата рождения
+            </th>
+            <th class="order_thead">
+                Зарплата
+            </th>
+            <th class="order_thead">
+                Email
+            </th>
+            <th class="order_thead">
+                Телефон
+            </th>
+            <th class="order_thead">
+                Пароль
+            </th>
+            <th colspan="3"></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td class="ifn_orders__content">
+                    @Html.DisplayFor(modelItem => item.sername) @Html.DisplayFor(modelItem => item.name) @Html.DisplayFor(modelItem => item.patronymic)
+                </td>
+                <td class="ifn_orders__content">
+                    @Html.DisplayFor(modelItem => item.date_of_birth)
+                </td>
+                <td class="ifn_orders__content">
+                    @Html.DisplayFor(modelItem => item.salary) руб.
+                </td>
+                <td class="ifn_orders__content">
+                    @Html.DisplayFor(modelItem => item.Email)
+                </td>
+                <td class="ifn_orders__content">
+                    @Html.DisplayFor(modelItem => item.phone)
+                </td>
+                <td class="ifn_orders__content">
+                    @Html.DisplayFor(modelItem => item.Password)
+                </td>
+                <td class="reis_ssilka">@Html.ActionLink("Редактировать", "Edit", new { id = item.id_employes })</td>
+                <td class="reis_ssilka">@Html.ActionLink("Подробная информация", "Details", new { id = item.id_employes })</td>
+                <td class="reis_ssilka">@Html.ActionLink("Удалить", "Delete", new { id = item.id_employes })</td>
+            </tr>
+        }
+    </table>
+</div>
+<div class="Create_reis">
+    <a class="add_reis button_add" href="/Employes/Create"><span>&#8594;</span>Добавить сотрудника<span>&#8592;</span></a>
+</div>

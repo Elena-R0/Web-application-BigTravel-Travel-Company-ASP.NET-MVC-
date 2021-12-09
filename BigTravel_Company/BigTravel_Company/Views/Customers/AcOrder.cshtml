@@ -1,0 +1,42 @@
+﻿@model IEnumerable<BigTravel_Company.Models.Orders>
+@Styles.Render("~/Content/Tables.css")
+
+<div class="search_turs">
+    <h2 class="our-services__tle our-services__title--line" style=" margin: 22px auto !important;">
+        Мои заказы
+    </h2>
+</div>
+<div class="container_table">
+    <table class="table_reis order" style="width: 470px !important">
+        <tr>
+            <th class="order_thead">
+                Дата регистрации
+            </th>
+            <th class="order_thead">
+                Статус заказа
+            </th>
+            <th class="order_thead">
+                Название путевки
+            </th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td class="ifn_orders__content">
+                    @Html.DisplayFor(modelItem => item.Date_registration)
+                </td>
+                <td class="ifn_orders__content">
+                    @Html.DisplayFor(modelItem => item.Order_status.NameStatus)
+                </td>
+                <td class="ifn_orders__content">
+                    @Html.DisplayFor(modelItem => item.Vouchers.name_vouchers)
+                </td>
+            </tr>
+        }
+    </table>
+</div>
+<div class="Create_reis">
+    <a class="add_reis button_add" href="~/Orders/Create"><span>&#8594;</span>Сделать заказ<span>&#8592;</span></a>
+</div>
+

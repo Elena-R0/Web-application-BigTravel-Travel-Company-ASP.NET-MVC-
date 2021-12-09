@@ -1,0 +1,85 @@
+﻿@model BigTravel_Company.Models.Vouchers
+
+@{
+    ViewBag.Title = "Details";
+}
+<div class="search_turs">
+    <h2 class="our-services__tle our-services__title--liner_hot ">
+        Подробная информация о путевке
+    </h2>
+</div>
+
+<div class="container">
+    <div class="offers">
+        <div class="offer">
+            <div class="offer__header">
+                <h2 class="offer__title">
+                    @Html.DisplayFor(model => model.name_vouchers)
+                </h2>
+            </div>
+            <div class="offer__body">
+                <div class="offer__body-img">
+                    <img src="~/Content/image/Vouchers/@Html.DisplayFor(model => model.image)" />
+                </div>
+                <div class="offer__body-content">
+                    <b>Место назначения:</b> @Html.DisplayFor(model => model.Route.Country.Name_country)<br>
+                    <b>Дата отбытия:</b> @Html.DisplayFor(model => model.Departure_date) <br />
+                    <b>Дата прибытия:</b> @Html.DisplayFor(model => model.Date_arrival) <br />
+                    <b> Стоимость:</b> @Html.DisplayFor(model => model.Cost)  руб.<br>
+                    @Html.DisplayFor(model => model.Information_vouchers)<br />
+                    <b>Экскурсия:</b> @Html.DisplayFor(model => model.Excursions) <br />
+                    <b>Количество путевок:</b> @Html.DisplayFor(model => model.number_trips) <br />
+                </div>
+            </div>
+        </div>
+        <div class="search_turs">
+            <h2 class="our-services__tle">
+                Информация о проживании
+            </h2>
+        </div>
+        <div class="offer">
+            <div class="offer__header">
+                <h2 class="offer__title">
+                    @Html.DisplayFor(model => model.hotel.Namehotel)
+                </h2>
+            </div>
+            <div class="offer__body">
+                <div class="offer__body-img">
+                    <img src="~/Content/image/hotels/@Html.DisplayFor(model => model.hotel.image)" />
+                </div>
+                <div class="offer__body-content">
+                    @Html.DisplayFor(model => model.hotel.description_hotel)
+                </div>
+            </div>
+        </div>
+        <div class="search_turs">
+            <h2 class="our-services__tle">
+              Информация о маршруте
+            </h2>
+        </div>
+        <div class="offer">
+            <div class="offer__header">
+                <h2 class="offer__title">
+                    @Html.DisplayFor(model => model.Route.Place)
+                </h2>
+            </div>
+            <div class="offer__body">
+                <div class="offer__body-img">
+                    <img src="~/Content/image/route/@Html.DisplayFor(model => model.Route.Place_image)" />
+                </div>
+                <div class="offer__body-content">
+                    <b>Страна:</b> @Html.DisplayFor(model => model.Route.Country.Name_country)<br />
+                    @Html.DisplayFor(model => model.Route.Place_description)
+                </div>
+            </div>
+        </div>
+        <div class="but_reis_content_butt">
+            @if (User.IsInRole("Employes"))
+            {
+                @Html.ActionLink("Редактировать", "Edit", new { id = Model.id_vouchers }, new { @class = "save_edit_reis" })}
+                <div class="Save_reis">
+                    <a class="back_reis button_back" href="/Vouchers/Index"><span>&#8594;</span>Назад<span>&#8592;</span></a>
+                </div>
+            </div>
+    </div>
+        </div>

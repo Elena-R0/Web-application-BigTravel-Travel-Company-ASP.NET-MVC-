@@ -1,0 +1,68 @@
+﻿@{ var menus = new[] {
+new { LinkText="Туры", ActionName="Index", ControllerName="Vouchers", Roles="All"  },
+new { LinkText="Маршруты", ActionName="Index", ControllerName="Routes", Roles="All"  },
+new { LinkText="Отели", ActionName="Index", ControllerName="hotels", Roles="All"  },
+new { LinkText="Страны", ActionName="Index", ControllerName="Countries", Roles="All"  },
+new { LinkText="Клиенты", ActionName="Index", ControllerName="Customers", Roles="Employes"  },
+new { LinkText="Сотрудники", ActionName="Index", ControllerName="Employes", Roles="Employes"  },
+new { LinkText="Заказы", ActionName="Index", ControllerName="Orders", Roles="Employes"  },
+new { LinkText="Оплаты", ActionName="Index", ControllerName="Payments", Roles="Employes"  },
+new { LinkText="Рейсы", ActionName="Index", ControllerName="reis", Roles="Employes"  },
+}; }
+
+@if (!User.Identity.IsAuthenticated)
+{
+    var links = from item in menus
+                where item.Roles.Split(new String[] { "," }, StringSplitOptions.RemoveEmptyEntries)
+                .Any(x => new String[] { "All", "Anonymous" }.Contains(x))
+                select item;
+    foreach (var link in links)
+    {
+        <a href="/@link.ControllerName" class="navigation-link">@link.LinkText</a>
+    }
+}
+else if (User.IsInRole("Customer"))
+{
+    String[] roles = Roles.GetRolesForUser();
+    var links = from item in menus
+                where item.Roles.Split(new String[] { "," }, StringSplitOptions.RemoveEmptyEntries)
+                .Any(x => roles.Contains(x) || x == "All")
+                select item;
+    foreach (var link in links)
+    {
+        <a href="/@link.ControllerName" class="navigation-link">@link.LinkText</a>}
+    <div class="header__menu_block">
+        <ul class="header__menu">
+            <li class="dropdown">
+                <a class="dropdown_acc" href="#">Привет, @User.Identity.FullName()!</a>
+                <ul class="dropdown__list">
+                    <li><a href="~/Customers/Account">Личный кабинет</a></li>
+                    <li>@Html.ActionLink("Выйти из аккаунта", "Logout", "Home", null, null)</li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+}
+else if (User.IsInRole("Employes"))
+{
+    String[] roles = Roles.GetRolesForUser();
+    var links = from item in menus
+                where item.Roles.Split(new String[] { "," }, StringSplitOptions.RemoveEmptyEntries)
+                .Any(x => roles.Contains(x) || x == "All")
+                select item;
+
+    <div class="header__menu_block">
+        <ul class="header__menu">
+            @foreach (var link in links)
+            {
+                <a href="/@link.ControllerName" class="navigation-link">@link.LinkText</a>
+            }
+            <li class="dropdown">
+                <a class="dropdown_acc" href="#">Привет, @User.Identity.FullName()!</a>
+                <ul class="dropdown__list">
+                    <li>@Html.ActionLink("Выйти из аккаунта", "Logout", "Home", null, null)</li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+}

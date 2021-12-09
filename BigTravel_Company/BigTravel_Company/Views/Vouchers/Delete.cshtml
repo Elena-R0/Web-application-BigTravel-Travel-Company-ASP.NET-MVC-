@@ -1,0 +1,48 @@
+﻿@model BigTravel_Company.Models.Vouchers
+
+@{
+    ViewBag.Title = "Delete";
+}
+<div class="search_turs">
+    <h2 class="our-services__tle our-services__title--liner_hot ">
+        Удалить путевку
+    </h2>
+</div>
+<div class="container">
+    <div class="offers">
+        <div class="offer">
+            <div class="offer__header">
+                <h2 class="offer__title">
+                    @Html.DisplayFor(model => model.name_vouchers)
+                </h2>
+            </div>
+            <div class="offer__body">
+                <div class="offer__body-img">
+                    <img src="~/Content/image/Vouchers/@Html.DisplayFor(model => model.image)" />
+                </div>
+                <div class="offer__body-content">
+                    <b>Место назначения:</b> @Html.DisplayFor(model => model.Route.Country.Name_country)<br>
+                    <b>Город:</b> @Html.DisplayFor(model => model.Route.Place) <br />
+                    <b>Дата отбытия:</b> @Html.DisplayFor(model => model.Departure_date) <br />
+                    <b>Дата прибытия:</b> @Html.DisplayFor(model => model.Date_arrival) <br />
+                    <b> Стоимость:</b> @Html.DisplayFor(model => model.Cost)  руб.<br>
+                    @Html.DisplayFor(model => model.Information_vouchers)<br />
+                    <b>Экскурсия:</b> @Html.DisplayFor(model => model.Excursions) <br />
+                    <b>Количество путевок:</b> @Html.DisplayFor(model => model.number_trips) <br />
+                    <b>Название отеля:</b> @Html.DisplayFor(model => model.hotel.Namehotel) <br />
+                </div>
+            </div>
+        </div>
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+            <div class="but_reis_content_butt">
+                <input type="submit" value="Удалить" class="save_edit_reis" />
+                <div class="Save_reis">
+                    <a class="back_reis button_back" href="/Vouchers/Index"><span>&#8594;</span>Назад<span>&#8592;</span></a>
+                </div>
+            </div>
+        }
+    </div>
+    </div>
+</div>

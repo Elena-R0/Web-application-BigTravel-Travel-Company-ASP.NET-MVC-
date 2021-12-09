@@ -1,0 +1,144 @@
+﻿@import url("https://fonts.googleapis.com/css2?family=Montserrat&display=swap");
+
+td.reis_ssilka a{
+    display: inline-block;
+    padding: 5px 10px;
+    position: relative;
+    color: #1D3241;
+    text-decoration: none;
+}
+
+    td.reis_ssilka a:hover {
+        top: 2px;
+        left: 2px;
+        color: rgb(184, 153, 59);
+    }
+
+.table_reis {
+    border-collapse: collapse;
+    border: 2px solid #065988;
+    font-family: "Montserrat";
+    color: #1D3241;
+    font-size: 14px;
+    text-align: center;
+    margin: 0 auto;
+}
+
+table.order {
+    width: 1300px;
+}
+.ifn_orders__content{
+    width:150px;
+}
+
+
+table.payment {
+    width: 1300px;
+}
+table.cust {
+    font-size: 11px;
+}
+    tr.order_thead_cust{
+        font-size: 11px;
+    }
+    .offer__body-footer {
+        color: white;
+    }
+a {
+    text-decoration: none;
+}
+.reis {
+    width: 220px;
+    height: 38px;
+    background: rgba(49, 139, 201, 0.87);
+    font-family: "Montserrat";
+    font-style: normal;
+    font-weight: 600;
+    font-size: 14px;
+    border: 0;
+    line-height: 22px;
+    letter-spacing: 0.035em;
+    color: #ffffff;
+}
+.offer__body-footer {
+    text-decoration: none;
+}
+
+.table_reis td, .table_reis th {
+    padding: 7px 5px;
+}
+
+.table_reis th {
+    text-align: center;
+    font-size: 14px;
+    color: #065988;
+    padding: 0px 10px 0px;
+    width:200px;
+}
+
+    .table_reis tr:nth-child(2n) {
+        background: #E5E5E5;
+    }
+
+    .table_reis td:last-of-type {
+        text-align: center;
+    }
+
+.button_add {
+    border: 2px solid #065988;
+    height: 35px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 5px;
+}
+
+.Create_reis {
+    width: 250px;
+    height: 35px;
+    text-align: center;
+    margin: 30px auto;
+}
+.Print_inf {
+    height: 100px !important;
+}
+
+.add_reis {
+    color: #1D3241;
+    font-family: "Montserrat";
+    font-weight: 700;
+    font-size: 14px;
+    text-align: center;
+}
+
+.button_add:hover {
+    background: #065988;
+    font-weight: bold;
+    color: white;
+}
+
+ .button_add span {
+    opacity: 0;
+    padding-left: 5px;
+    padding-right: 5px;
+    font-weight: bold;
+    transition: 0.4s ease-in-out;
+    color: white;
+}
+.button_add:hover span {
+    opacity: 1;
+    padding-left: 10px;
+    padding-right: 10px;
+    color:white;
+    
+}
+
+.ed_pay {
+color: #1d3241;
+}
+
+    .ed_pay:hover {
+        top: 2px;
+        left: 2px;
+        color: rgb(184, 153, 59);
+    }

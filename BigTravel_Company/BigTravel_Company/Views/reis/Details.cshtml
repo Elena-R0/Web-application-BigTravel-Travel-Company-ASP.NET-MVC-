@@ -1,0 +1,39 @@
+﻿@model BigTravel_Company.Models.reis
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<div class="search_turs">
+    <h2 class="our-services__tle our-services__title--liner_hot ">
+        Подробная информация о рейсах
+    </h2>
+</div>
+
+<div class="container">
+    <div class="offers">
+        <div class="offer">
+            <div class="offer__header">
+                <h2 class="offer__title">
+                    @Html.DisplayFor(model => model.Orders.Vouchers.name_vouchers)
+                </h2>
+            </div>
+            <div class="offer__body">
+                <div class="offer__body-content content_dopoln" >
+                    <b>Пункт отправления:</b> @Html.DisplayFor(model => model.Point_departure) <br />
+                    <b>Место назначения:</b> @Html.DisplayFor(model => model.Destination)<br />
+                    <b>Дата отъезда:</b> @Html.DisplayFor(model => model.Departure_date)<br />
+                    <b>Дата прибытия:</b> @Html.DisplayFor(model => model.Date_arrival)<br />
+                    <b>Номер заказа:</b> @Html.DisplayFor(model => model.Orders.id_orders)<br />
+
+                </div>
+            </div>
+            <div class="but_reis_content_butt">
+                @Html.ActionLink("Редактировать", "Edit", new { id = Model.id_reis }, new { @class = "save_edit_reis" })
+                <div class="Save_reis">
+                    <a class="back_reis button_back" href="/reis/Index"><span>&#8594;</span>Назад<span>&#8592;</span></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

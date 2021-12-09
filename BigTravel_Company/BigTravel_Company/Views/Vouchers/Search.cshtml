@@ -1,0 +1,73 @@
+﻿@model BigTravel_Company.Models.Vouchers
+
+
+<script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
+@Styles.Render("~/Content/datepicker.css")
+
+@section Scripts {
+    <script type="text/javascript" src="~/Scripts/datepicker.js"></script>
+}
+
+<script type="text/javascript">
+    $('.Departure_date').datepicker({
+        maxDate: new Date()
+    });
+    $(".Departure_date").datepicker().data('datepicker').selectDate(new Date());
+    $('.Date_arrival').datepicker({
+        maxDate: new Date()
+    });
+    $(".Date_arrival").datepicker().data('datepicker').selectDate(new Date());
+</script>
+
+<style>
+
+    label {
+        margin: 219px;
+        font-family: "Montserrat";
+        /* font-style: normal; */
+        /* font-weight: 600; */
+        line-height: 33px;
+        /* text-align: center; */
+        /* justify-content: center; */
+        color: #363636;
+    }
+</style>
+
+<div class="search-content">
+    <div class="search_turs">
+        <h2 class="our-services__title our-services__title--line">
+            Поиск тура
+        </h2>
+    </div>
+    <div class="filter__grid">
+        <div class="search_turs_filter">
+            <label>Страна</label>
+            <div class="cont_inf">
+                @Html.DropDownList("id_country", null, htmlAttributes: new { @class = "filter__select" })
+            </div>
+        </div>
+        <div class="search_turs_filter">
+            <label>Дата отъезда</label>
+            <div class="cont_inf">
+                @Html.EditorFor(model => model.Departure_date, new
+                {
+                    htmlAttributes = new
+                    {
+                        @class = " Departure_date filter__select datepicker-here"@*, @readonly = "readonly"*@ }
+                })
+            </div>
+        </div>
+        <div class="search_turs_filter">
+            <label>Дата прибытия</label>
+            <div class="cont_inf">
+                @Html.EditorFor(model => model.Date_arrival, new
+                {
+                    htmlAttributes = new
+                    {
+                        @class = "Date_arrival filter__select datepicker-here"@*, @readonly = "readonly"*@ }
+                })
+            </div>
+        </div>
+
+    </div>
+</div>

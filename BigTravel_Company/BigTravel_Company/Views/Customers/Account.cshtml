@@ -1,0 +1,44 @@
+﻿@model BigTravel_Company.Models.Customer
+
+@{
+    ViewBag.Title = "Account";
+}
+@Styles.Render("~/Content/account.css")
+
+<div id="help__container">
+    <div class="tabs">
+        <input id="tab1" type="radio" name="tabs" checked>
+        <label for="tab1">Личный кабинет</label>
+        @*<input id="tab2" type="radio" name="tabs">
+        <label for="tab2">Редактирование аккаунта</label>*@
+        <input id="tab3" type="radio" name="tabs">
+        <label for="tab3">Заказы</label>
+        <input id="tab4" type="radio" name="tabs">
+        <label for="tab4">Выйти</label>
+
+        <section id="content1" class="cover">
+
+            <div class="large-column cover-text-block">
+                    <span class="subheader">
+                        @Html.DisplayFor(model => model.sername) @Html.DisplayFor(model => model.name) @Html.DisplayFor(model => model.patronymic)
+                    </span>
+            </div>
+            <div class="informat">
+                <b>Дата рождения:</b> @Html.DisplayFor(model => model.date_of_birth)<br />
+                <b>Адрес:</b> @Html.DisplayFor(model => model.adress)<br />
+                <b>Email:</b> @Html.DisplayFor(model => model.Email)<br />
+                <b>Телефон:</b> @Html.DisplayFor(model => model.phone)<br />
+            </div>
+        </section>
+        @*<section id="content2">
+            @Html.Action("EditAccount", new { @class = "edit_account", area = "" })
+        </section>*@
+        <section id="content3">
+            @Html.Action("AcOrder",new { @class = "edit_account", area = "" })
+        </section>
+        <section id="content4">
+            <p class="Go_out">@Html.ActionLink("Вы хотите выйти из аккаунта?", "Logout", "Home", null, null)</p>
+        </section>
+    </div>
+</div>
+

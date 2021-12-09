@@ -1,0 +1,173 @@
+﻿@import url("https://fonts.googleapis.com/css2?family=Montserrat&display=swap");
+.Punkt_otp {
+    border: 1px solid #aaa;
+    box-shadow: 0px 0px 3px #ccc, 0 10px 15px #eee inset;
+    border-radius: 2px;
+    color: #1D3241;
+    width: 200px;
+    font-family: "Montserrat";
+    font-weight: 400;
+    font-size: 16px;
+    padding-left: 10px;
+}
+.Save_reis {
+    width: 150px;
+    height: 30px;
+    text-align: center;
+    margin-left: 15px;
+}
+textarea.Punkt_otp {
+    border: 1px solid #aaa;
+    box-shadow: 0px 0px 3px #ccc, 0 10px 15px #eee inset;
+    border-radius: 2px;
+    color: #1D3241;
+    width: 200px;
+    font-family: "Montserrat";
+    font-weight: 400;
+    font-size: 16px;
+    padding-left: 10px;
+}
+
+.error_vouchers_name_description {
+    font-family: "Montserrat";
+    font-weight: 400;
+    font-size: 16px;
+    padding-left: 115px;
+    color: red;
+}
+
+.but_reis_content_butt {
+    margin: 20px auto;
+    display: flex;
+    justify-content: center;
+}
+
+.button_inf {
+    margin-bottom: 30px;
+}
+.cont_inf{
+margin-left: 15px;
+position:relative;
+}
+.button_back {
+    color: #E7E5DD;
+    border: 3px solid #1D3241;
+    height: 30px;
+    display: flex;
+    font-weight: bold;
+    align-items: center;
+    justify-content: center;
+}
+    .button_back:hover {
+        background: #1D3241;
+        font-weight: bold;
+        color: white;
+    }
+
+    .button_back span {
+        opacity: 0;
+        padding-left: 5px;
+        padding-right: 5px;
+        font-weight: bold;
+        transition: 0.4s ease-in-out;
+        color: white;
+    }
+.reis_name_inf {
+    color: #1D3241;
+    font-family: "Montserrat";
+    font-weight: 700;
+    font-size: 24px;
+    margin: 40px auto;
+    text-align: center;
+}
+
+.but_reis_content {
+    margin: 20px auto;
+    display: flex;
+}
+
+
+a {
+    text-decoration: none;
+}
+.button_back:hover span {
+    opacity: 1;
+    padding-left: 10px;
+    padding-right: 10px;
+    color: white;
+}
+
+.back_reis {
+    color: #1D3241;
+    font-family: "Montserrat";
+    font-weight: 700;
+    font-size: 16px;
+    text-align: center;
+}
+
+
+
+.button_add span {
+    opacity: 0;
+    padding-left: 5px;
+    padding-right: 5px;
+    font-weight: bold;
+    transition: 0.4s ease-in-out;
+    color: white;
+}
+
+.button_add:hover span {
+    opacity: 1;
+    padding-left: 10px;
+    padding-right: 10px;
+    color: white;
+}
+.Punkt_otp:focus {
+    background: #fff;
+    box-shadow: 0 0 5px #d45252;
+    border-color: #b03535;
+}
+.num_reis {
+    color: #1D3241;
+    font-family: "Montserrat";
+    font-weight: 500;
+    font-size: 14px;
+    padding-right: 10px;
+}
+
+.save_edit_reis {
+   
+    border: none;
+    color: #fff;
+    width: 150px;
+    height: 30px;
+    font-size: 16px;
+    font-family: "Montserrat";
+    font-weight: 600;
+    background: #1D3241;
+    cursor: pointer;
+}
+
+.save_edit_reis:hover {
+    color: #1D3241;
+    background: #fff;
+    border: 3px solid #1D3241;
+}
+
+.contact_form-list {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.contact_form-list li label {
+    max-width: 150px;
+    width: 100%;
+}
+
+
+
+.contact_form-list li {
+    max-width: 400px;
+    width: 100%;
+}

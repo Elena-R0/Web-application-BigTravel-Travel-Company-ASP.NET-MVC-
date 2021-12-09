@@ -1,0 +1,130 @@
+﻿@model BigTravel_Company.Models.Vouchers
+@Styles.Render("~/Content/datepicker.css")
+@Styles.Render("~/Content/edit_inf.css")
+@{
+    ViewBag.Title = "Edit";
+}
+
+@Scripts.Render("~/Scripts/validated.js")
+
+<script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
+
+@section Scripts {
+    <script type="text/javascript" src="~/Scripts/datepicker.js"></script>
+}
+
+<script type="text/javascript">
+    $('#Departure_date').datepicker({
+        maxDate: new Date()
+    });
+    $("#Departure_date").datepicker().data('datepicker').selectDate(new Date());
+    $('#Date_arrival').datepicker({
+        maxDate: new Date()
+    });
+    $("#Date_arrival").datepicker().data('datepicker').selectDate(new Date());
+</script>
+@Scripts.Render("~/Scripts/Podkl-file.js")
+
+<script>
+    window.onload = function () {
+        let imageValue = $('[name="image"]').attr('value');
+        $('#fileformlabel').html(imageValue);
+
+    }
+</script>
+
+<div class="container">
+    @using (Html.BeginForm("Edit", "Vouchers", FormMethod.Post, new { id = "Vouchers", enctype = "multipart/form-data"}))
+    {
+        @Html.AntiForgeryToken()
+        <form class="contact_form" action="#" method="post" name="contact_form">
+            <h2 class="reis_name_inf">Редактирование информации о путевках</h2>
+            @Html.ValidationSummary(true, "", new { @class = "num_reis" })
+            @Html.HiddenFor(model => model.id_vouchers)
+            <ul class="contact_form-list">
+
+                <li>
+                    @Html.LabelFor(model => model.name_vouchers, "Название путевки", htmlAttributes: new { @class = "num_reis" })
+                    <div class="cont_inf">
+                        @Html.EditorFor(model => model.name_vouchers, new { htmlAttributes = new { @class = "Punkt_otp hotel_content" } })
+                        @Html.ValidationMessageFor(model => model.name_vouchers, "", new { @class = " num_reis" })
+                    </div>
+                </li>
+                <li>
+                    @Html.LabelFor(model => model.Route.Place, "Название места", htmlAttributes: new { @class = "num_reis" })
+                    <div class="cont_inf">
+                        @Html.DropDownList("id_route", null, htmlAttributes: new { @class = "Punkt_otp hotel_content" })
+                        @Html.ValidationMessageFor(model => model.Route.Place, "", new { @class = " num_reis" })
+                    </div>
+                </li>
+                <li>
+                    @Html.LabelFor(model => model.hotel.Namehotel, "Название отеля", htmlAttributes: new { @class = "num_reis" })
+                    <div class="cont_inf">
+                        @Html.DropDownList("id_hotel", null, htmlAttributes: new { @class = "Punkt_otp hotel_content" })
+                        @Html.ValidationMessageFor(model => model.hotel.Namehotel, "", new { @class = "num_reis" })
+                    </div>
+                </li>
+                <li>
+                    @Html.LabelFor(model => model.Departure_date, "Дата отъезда", htmlAttributes: new { @class = "num_reis" })
+                    <div class="cont_inf">
+                        @Html.EditorFor(model => model.Departure_date, new { htmlAttributes = new { @class = "Punkt_otp hotel_content datepicker-here" } })
+                        @Html.ValidationMessageFor(model => model.Departure_date, "", new { @class = "num_reis" })
+                    </div>
+                </li>
+                <li>
+                    @Html.LabelFor(model => model.Date_arrival, "Дата прибытия", htmlAttributes: new { @class = "num_reis" })
+                    <div class="cont_inf">
+                        @Html.EditorFor(model => model.Date_arrival, new { htmlAttributes = new { @class = "Punkt_otp hotel_content datepicker-here" } })
+                        @Html.ValidationMessageFor(model => model.Date_arrival, "", new { @class = "num_reis" })
+                    </div>
+                </li>
+                <li>
+                    @Html.LabelFor(model => model.Information_vouchers, "Описание путевки", htmlAttributes: new { @class = "num_reis" })
+                    <div class="cont_inf">
+                        @Html.TextAreaFor(model => model.Information_vouchers, 7, 75, new { @class = "Punkt_otp hotel_content" })
+                        @Html.ValidationMessageFor(model => model.Information_vouchers, "", new { @class = "num_reis" })
+                    </div>
+                </li>
+                <li>
+                    @Html.LabelFor(model => model.Excursions, "Экскурсия", htmlAttributes: new { @class = "num_reis" })
+                    <div class="cont_inf">
+                        @Html.EditorFor(model => model.Excursions, new { htmlAttributes = new { @class = "Punkt_otp hotel_content" } })
+                        @Html.ValidationMessageFor(model => model.Excursions, "", new { @class = "num_reis" })
+                    </div>
+                </li>
+                <li>
+                    @Html.LabelFor(model => model.image, "Название фото", htmlAttributes: new { @class = "num_reis" })
+                    <div class="fileform cont_inf" id="divfile">
+                        <div id="fileformlabel"></div>
+                        <div class="selectbutton">Обзор</div>
+                        @Html.EditorFor(model => model.image, new { htmlAttributes = new { type = "file", onchange = "getName(this.value);", accept = ".jpg, .jpeg, .png" } })
+                    </div>
+                </li>
+                <li>
+                    @Html.LabelFor(model => model.Cost, "Стоимость", htmlAttributes: new { @class = "num_reis" })
+                    <div class="cont_inf">
+                        @Html.EditorFor(model => model.Cost, new { htmlAttributes = new { @class = "Punkt_otp hotel_content" } })
+                        @Html.ValidationMessageFor(model => model.Cost, "", new { @class = "num_reis" })
+                    </div>
+                </li>
+                <li>
+                    @Html.LabelFor(model => model.number_trips, "Количество путевок", htmlAttributes: new { @class = "num_reis" })
+                    <div class="cont_inf">
+                        @Html.EditorFor(model => model.number_trips, new { htmlAttributes = new { @class = "Punkt_otp hotel_content" } })
+                        @Html.ValidationMessageFor(model => model.number_trips, "", new { @class = "num_reis" })
+                    </div>
+                </li>
+                <li class="button_inf">
+                    <div class="but_reis_content">
+                        <input type="submit" value="Сохранить" class="save_edit_reis" id="vouch" />
+                        <div class="Save_reis">
+                            <a class="back_reis button_back" href="/Vouchers/Index"><span>&#8594;</span>Назад<span>&#8592;</span></a>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </form>
+    }
+
+
+</div>

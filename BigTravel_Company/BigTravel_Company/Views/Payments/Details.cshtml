@@ -1,0 +1,35 @@
+﻿@model BigTravel_Company.Models.Payment
+@{
+    ViewBag.Title = "Details";
+}
+<div class="search_turs">
+    <h2 class="our-services__tle our-services__title--liner_hot ">
+        Подробная информация об оплате
+    </h2>
+</div>
+
+<div class="container">
+    <div class="offers">
+        <div class="offer">
+            <div class="offer__header">
+                <h2 class="offer__title">
+                    @Html.DisplayFor(model => model.Customer.sername) @Html.DisplayFor(model => model.Customer.name) @Html.DisplayFor(model => model.Customer.patronymic)
+                </h2>
+            </div>
+            <div class="offer__body">
+                <div class="offer__body-content">
+                    <b>Номер банковской карты:</b> @Html.DisplayFor(model => model.bank_card_num) <br />
+                    <b>Дата оплаты:</b> @Html.DisplayFor(model => model.date_payment)<br />
+                    <b>Номер заказа:</b> @Html.DisplayFor(model => model.Orders.id_orders)<br />
+                    <b>Статус оплаты:</b> @Html.DisplayFor(model => model.PayType.Name_PayType)<br />
+                </div>
+            </div>
+            <div class="but_reis_content_butt">
+                @Html.ActionLink("Редактировать", "Edit", new { id = Model.idPayment }, new { @class = "save_edit_reis" })
+                <div class="Save_reis">
+                    <a class="back_reis button_back" href="/Payments/Index"><span>&#8594;</span>Назад<span>&#8592;</span></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

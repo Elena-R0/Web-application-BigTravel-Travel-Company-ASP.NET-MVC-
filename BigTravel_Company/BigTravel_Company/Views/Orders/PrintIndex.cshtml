@@ -1,0 +1,77 @@
+﻿@model IEnumerable<BigTravel_Company.Models.Orders>
+@{ Layout = null;}
+<!DOCTYPE html>
+@{ ViewBag.Title = "Index"; }
+@*@Styles.Render("~/Content/Tables.css")*@
+<style>
+    .table_reis {
+        border-collapse: collapse;
+        border: 2px solid #065988;
+        font-family: "Montserrat";
+        color: #1D3241;
+        font-size: 14px;
+        text-align: center;
+        margin: 0 auto;
+    }
+    tr.order_thead_cust {
+        font-size: 11px;
+    }
+
+    .table_reis tr:nth-child(2n) {
+        background: #E5E5E5;
+    }
+    .table_reis td, .table_reis th {
+        padding: 7px 5px;
+    }
+</style>
+<h2 style="color: #065988; font-style:italic; font-family: Montserrat; font-size: 27px; text-align: center; ">Список заказов</h2>
+<div class="container_table">
+    <table class="table_reis order">
+        <tr>
+            <th class="order_thead">
+                Дата регистрации
+            </th>
+            <th class="order_thead">
+                Количество человек
+            </th>
+            <th class="order_thead">
+                Фамилия клиента
+            </th>
+            <th class="order_thead">
+                Фамилия сотрудника
+            </th>
+            <th class="order_thead">
+                Статус заказа
+            </th>
+            <th class="order_thead">
+                Название путевки
+            </th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+<tr>
+    <td class="ifn_orders__content">
+        @Html.DisplayFor(modelItem => item.Date_registration)
+    </td>
+    <td class="ifn_orders__content">
+        @Html.DisplayFor(modelItem => item.Number)
+    </td>
+    <td class="ifn_orders__content">
+        @Html.DisplayFor(modelItem => item.Customer.sername)
+    </td>
+    <td class="ifn_orders__content">
+        @Html.DisplayFor(modelItem => item.Employes.sername)
+    </td>
+    <td class="ifn_orders__content">
+        @Html.DisplayFor(modelItem => item.Order_status.NameStatus)
+    </td>
+    <td class="ifn_orders__content">
+        @Html.DisplayFor(modelItem => item.Vouchers.name_vouchers)
+    </td>
+</tr>
+}
+    </table>
+</div>
+
+

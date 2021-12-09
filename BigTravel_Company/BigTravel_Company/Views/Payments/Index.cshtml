@@ -1,0 +1,60 @@
+﻿@model IEnumerable<BigTravel_Company.Models.Payment>
+@Styles.Render("~/Content/Tables.css")
+@{
+    ViewBag.Title = "Index";
+}
+<div class="search_turs">
+    <h2 class="our-services__tle our-services__title--line">
+        Оплаты
+    </h2>
+</div>
+<div class="container_table">
+    <table class="table_reis payment">
+        <tr>
+            <th>
+                Фамилия клиента
+            </th>
+            <th>
+                Номер банковской карты
+            </th>
+            <th>
+                Дата оплаты
+            </th>
+            <th>
+                Название путевки
+            </th>
+            <th>
+                Тип оплаты
+            </th>
+            <th colspan="3"></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Customer.sername)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.bank_card_num)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.date_payment)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Orders.Vouchers.name_vouchers)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PayType.Name_PayType)
+        </td>
+        <td class="reis_ssilka">@Html.ActionLink("Редактировать", "Edit", new { id = item.idPayment})</td>
+        <td class="reis_ssilka">@Html.ActionLink("Подробная информация", "Details", new { id = item.idPayment})</td>
+        <td class="reis_ssilka">@Html.ActionLink("Удалить", "Delete", new { id = item.idPayment})</td>
+    </tr>
+        }
+    </table>
+</div>
+<div class="Create_reis">
+    <a class="add_reis button_add" href="/Payments/Create"><span>&#8594;</span>Добавить оплату<span>&#8592;</span></a>
+</div>
+

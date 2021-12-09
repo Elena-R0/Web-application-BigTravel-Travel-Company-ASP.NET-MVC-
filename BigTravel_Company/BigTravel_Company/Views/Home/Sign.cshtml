@@ -1,0 +1,31 @@
+﻿<script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
+@Scripts.Render("~/Scripts/validated.js")
+@if (!string.IsNullOrEmpty(ViewBag.Error))
+{
+    <p>@ViewBag.Error</p>
+}
+<div class="modal__login-form">
+    @using (Html.BeginForm("Sign", "Home", FormMethod.Post, new { @class = "login-form__form", id = "signForm" }))
+    {
+        <div class="middle">
+            <h1 class="login-form__enter">Авторизация</h1>
+            <div id="fancy-inputs">
+                <div id="input_name">
+                    <label class="input">
+                        <input type="text" name="email" id="email_st">
+                        <span><span>Email</span></span>
+                    </label>
+                </div>
+                <div id="input_password">
+                    <label class="input">
+                        <input type="password" name="password" id="pass_st">
+                        <span><span>Password</span></span>
+                    </label>
+                </div>
+            </div>
+            <div class="button_vxod">
+                <input type="submit" class="voiti_btn btn_button_back" id="signIN" value="Войти" />
+            </div>
+        </div>
+    }
+</div>

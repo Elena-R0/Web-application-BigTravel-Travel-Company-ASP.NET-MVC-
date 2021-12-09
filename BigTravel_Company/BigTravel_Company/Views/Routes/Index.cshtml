@@ -1,0 +1,56 @@
+﻿@model IEnumerable<BigTravel_Company.Models.Route>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<div class="search_turs">
+    <h2 class="our-services__tle our-services__title--line">
+        Маршруты
+    </h2>
+</div>
+
+<div class="container">
+    <div class="offers">
+        @foreach (var item in Model)
+        {
+            <div class="offer">
+                <div class="offer__header">
+                    <h2 class="offer__title">
+                        @Html.DisplayFor(modelItem => item.Place)
+                    </h2>
+                </div>
+                <div class="offer__body">
+                    <div class="offer__body-img">
+                        <img src="~/Content/image/route/@Html.DisplayFor(modelItem => item.Place_image)" />
+                    </div>
+                    <div class="offer__body-content">
+                        <b>Страна:</b> @Html.DisplayFor(modelItem => item.Country.Name_country)<br />
+                        @Html.DisplayFor(modelItem => item.Place_description)
+                    </div>
+                </div>
+                <div class="offer_vouch">
+                    @if (User.IsInRole("Employes"))
+                    {
+                        <div class="inner"><button class="button vouch">@Html.ActionLink("Редактировать", "Edit", new { id = item.id_route }, new { @class = "link" })</button></div>
+
+                    }
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        <div class="inner"><button class="button vouch">@Html.ActionLink("Подробная информация", "Details", new { id = item.id_route }, new { @class = "link" })</button></div>
+                    }
+                    @if (User.IsInRole("Employes"))
+                    {
+                        <div class="inner"><button class="button vouch">@Html.ActionLink("Удалить", "Delete", new { id = item.id_route }, new { @class = "link" }) </button></div>
+                    }
+                </div>
+            </div>
+        }
+    </div>
+</div>
+@if (User.IsInRole("Employes"))
+{
+    <div class="offer__body-footer">
+        <button class="button bron"> @Html.ActionLink("Добавить маршрут", "Create")</button>
+    </div>
+}

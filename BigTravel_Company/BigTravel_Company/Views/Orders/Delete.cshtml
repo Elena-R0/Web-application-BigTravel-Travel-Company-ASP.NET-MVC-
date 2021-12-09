@@ -1,0 +1,46 @@
+﻿@model BigTravel_Company.Models.Orders
+@Styles.Render("~/Content/edit_inf.css")
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<div class="search_turs">
+    <h2 class="our-services__tle our-services__title--liner_hot">
+        Удаление заказа
+    </h2>
+</div>
+<div class="container">
+    <div class="offers">
+        <div class="offer">
+            <div class="offer__header">
+                <h2 class="offer__title">
+                    @Html.DisplayFor(model => model.Vouchers.name_vouchers)
+                </h2>
+            </div>
+            <div class="offer__body">
+                <div class="offer__body-content">
+                    <b>ФИО клиента:</b> @Html.DisplayFor(model => model.Customer.sername) @Html.DisplayFor(model => model.Customer.name) @Html.DisplayFor(model => model.Customer.patronymic)<br />
+                    <b>ФИО сотрудника:</b> @Html.DisplayFor(model => model.Employes.sername) @Html.DisplayFor(model => model.Employes.name) @Html.DisplayFor(model => model.Employes.patronymic)<br />
+                    <b>Дата регистрации заказа:</b> @Html.DisplayFor(model => model.Date_registration)<br />
+                    <b>Количество человек:</b> @Html.DisplayFor(model => model.Number)<br />
+                    <b>Статус оплаты заказа:</b> @Html.DisplayFor(model => model.Order_status.NameStatus)<br />
+                </div>
+            </div>
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+                <div class="but_reis_content_butt">
+                    <input type="submit" value="Удалить" class="save_edit_reis" />
+                    <div class="Save_reis">
+                        <a class="back_reis button_back" href="/Orders/Index"><span>&#8594;</span>Назад<span>&#8592;</span></a>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+
+
+

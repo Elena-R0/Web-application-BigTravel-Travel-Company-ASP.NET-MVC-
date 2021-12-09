@@ -1,0 +1,42 @@
+﻿@model BigTravel_Company.Models.hotel
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<div class="search_turs">
+    <h2 class="our-services__tle our-services__title--liner_hot">
+       Удаление информации об отеле
+    </h2>
+</div>
+
+<div class="container">
+    <div class="offers">
+        <div class="offer">
+            <div class="offer__header">
+                <h2 class="offer__title">
+                    @Html.DisplayFor(model => model.Namehotel)
+                </h2>
+            </div>
+            <div class="offer__body">
+                <div class="offer__body-img">
+                    <img src="~/Content/image/hotels/@Html.DisplayFor(model => model.image)" />
+                </div>
+                <div class="offer__body-content">
+                    @Html.DisplayFor(model => model.description_hotel)
+                </div>
+            </div>
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+        <div class="but_reis_content_butt">
+         <input type="submit" value="Удалить" class="save_edit_reis" />
+            <div class="Save_reis">
+                <a class="back_reis button_back" href="/hotels/Index"><span>&#8594;</span>Назад<span>&#8592;</span></a>
+            </div>
+        </div>
+            }
+
+        </div>
+    </div>
+</div>

@@ -1,0 +1,112 @@
+﻿@model BigTravel_Company.Models.Customer
+@Styles.Render("~/Content/edit_inf.css")
+@Styles.Render("~/Content/datepicker.css")
+@Scripts.Render("~/Scripts/validated.js")
+@{
+    ViewBag.Title = "Edit";
+}
+<script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
+
+@section Scripts {
+    <script type="text/javascript" src="~/Scripts/datepicker.js"></script>
+}
+<script type="text/javascript">
+    $('#date_of_birth').datepicker({
+        maxDate: new Date()
+    });
+    $("#date_of_birth").datepicker().data('datepicker').selectDate(new Date());
+</script>
+<div class="container">
+    @using (Html.BeginForm(null, null, FormMethod.Post, new { id = "customers" }))
+    {
+        @Html.AntiForgeryToken()
+        <form class="contact_form" action="#" method="post" name="contact_form">
+            <h2 class="reis_name_inf">Редактирование информации о клиентах</h2>
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            @Html.HiddenFor(model => model.id_customer)
+            <ul class="contact_form-list">
+
+                <li>
+                    @Html.LabelFor(model => model.sername, "Фамилия", htmlAttributes: new { @class = "num_reis" })
+                    <div class="cont_inf">
+                        @Html.EditorFor(model => model.sername, new { htmlAttributes = new { @class = "Punkt_otp hotel_content" } })
+                        @Html.ValidationMessageFor(model => model.sername, "", new { @class = " num_reis" })
+                    </div>
+                </li>
+                <li>
+                    @Html.LabelFor(model => model.name, "Имя", htmlAttributes: new { @class = "num_reis" })
+                    <div class="cont_inf">
+                        @Html.EditorFor(model => model.name, new { htmlAttributes = new { @class = "Punkt_otp hotel_content" } })
+                        @Html.ValidationMessageFor(model => model.name, "", new { @class = " num_reis" })
+                    </div>
+                </li>
+                <li>
+                    @Html.LabelFor(model => model.patronymic, "Отчество", htmlAttributes: new { @class = "num_reis" })
+                    <div class="cont_inf">
+                        @Html.EditorFor(model => model.patronymic, new { htmlAttributes = new { @class = "Punkt_otp" } })
+                        @Html.ValidationMessageFor(model => model.patronymic, "", new { @class = "num_reis" })
+                    </div>
+                </li>
+
+                <li>
+                    @Html.LabelFor(model => model.Series, "Серия паспорта", htmlAttributes: new { @class = "num_reis" })
+                    <div class="cont_inf">
+                        @Html.EditorFor(model => model.Series, new { htmlAttributes = new { @class = "Punkt_otp" } })
+                        @Html.ValidationMessageFor(model => model.Series, "", new { @class = "num_reis" })
+                    </div>
+                </li>
+                <li>
+                    @Html.LabelFor(model => model.Number, "Номер паспорта", htmlAttributes: new { @class = "num_reis" })
+                    <div class="cont_inf">
+                        @Html.EditorFor(model => model.Number, new { htmlAttributes = new { @class = "Punkt_otp" } })
+                        @Html.ValidationMessageFor(model => model.Number, "", new { @class = "num_reis" })
+                    </div>
+                </li>
+                <li>
+                    @Html.LabelFor(model => model.date_of_birth, "Дата рождения", htmlAttributes: new { @class = "num_reis" })
+                    <div class="cont_inf">
+                        @Html.EditorFor(model => model.date_of_birth, new { htmlAttributes = new { @class = "Punkt_otp datepicker-here", @readonaly="readonaly" } })
+                        @Html.ValidationMessageFor(model => model.date_of_birth, "", new { @class = "num_reis" })
+                    </div>
+                </li>
+                <li>
+                    @Html.LabelFor(model => model.adress, "Адрес", htmlAttributes: new { @class = "num_reis" })
+                    <div class="cont_inf">
+                        @Html.EditorFor(model => model.adress, new { htmlAttributes = new { @class = "Punkt_otp" } })
+                        @Html.ValidationMessageFor(model => model.adress, "", new { @class = "num_reis" })
+                    </div>
+                </li>
+                <li>
+                    @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "num_reis" })
+                    <div class="cont_inf">
+                        @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "Punkt_otp" } })
+                        @Html.ValidationMessageFor(model => model.Email, "", new { @class = "num_reis" })
+                    </div>
+                </li>
+                <li>
+                    @Html.LabelFor(model => model.phone, "Телефон", htmlAttributes: new { @class = "num_reis" })
+                    <div class="cont_inf">
+                        @Html.EditorFor(model => model.phone, new { htmlAttributes = new { @class = "Punkt_otp" } })
+                        @Html.ValidationMessageFor(model => model.phone, "", new { @class = "num_reis" })
+                    </div>
+                </li>
+                <li>
+                    @Html.LabelFor(model => model.Password, "Пароль", htmlAttributes: new { @class = "num_reis" })
+                    <div class="cont_inf">
+                        @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "Punkt_otp" } })
+                        @Html.ValidationMessageFor(model => model.Password, "", new { @class = "num_reis" })
+                    </div>
+                </li>
+                <li class="button_inf">
+                    <div class="but_reis_content">
+                        <input type="submit" value="Сохранить" class="save_edit_reis" />
+                        <div class="Save_reis">
+                            <a class="back_reis button_back" href="/Customers/Index"><span>&#8594;</span>Назад<span>&#8592;</span></a>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </form>
+    }
+
+</div>

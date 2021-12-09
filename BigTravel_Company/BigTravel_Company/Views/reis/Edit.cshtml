@@ -1,0 +1,87 @@
+﻿@model BigTravel_Company.Models.reis
+@Styles.Render("~/Content/datepicker.css")
+@Styles.Render("~/Content/edit_inf.css")
+@{
+    ViewBag.Title = "Edit";
+}
+@Scripts.Render("~/Scripts/validated.js")
+
+<script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
+
+@section Scripts {
+    <script type="text/javascript" src="~/Scripts/datepicker.js"></script>
+}
+
+<script type="text/javascript">
+    $('#Departure_date').datepicker({
+        maxDate: new Date()
+    });
+    $("#Departure_date").datepicker().data('datepicker').selectDate(new Date());
+    $('#Date_arrival').datepicker({
+        maxDate: new Date()
+    });
+    $("#Date_arrival").datepicker().data('datepicker').selectDate(new Date());
+</script>
+
+<div class="container">
+    @using (Html.BeginForm(null, null, FormMethod.Post, new { id = "reis" }))
+    {
+        @Html.AntiForgeryToken()
+        <form class="contact_form" action="#" method="post" name="contact_form">
+            <h2 class="reis_name_inf">Редактирование информации о рейсах</h2>
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            @Html.HiddenFor(model => model.id_reis)
+            <ul class="contact_form-list">
+
+                <li>
+                    @Html.LabelFor(model => model.id_order, "Номер заказа", htmlAttributes: new { @class = "num_reis" })
+                    <div class="cont_inf">
+                        @Html.DropDownList("id_order", null, htmlAttributes: new { @class = "Punkt_otp" })
+                        @Html.ValidationMessageFor(model => model.id_order, "", new { @class = "text_num_reis" })
+                    </div>
+                </li>
+                <li>
+                    @Html.LabelFor(model => model.Point_departure, "Пункт отправки", htmlAttributes: new { @class = "num_reis" })
+                    <div class="cont_inf">
+                        @Html.EditorFor(model => model.Point_departure, new { htmlAttributes = new { @class = "Punkt_otp" } })
+                        @Html.ValidationMessageFor(model => model.Point_departure, "", new { @class = "num_reis" })
+                    </div>
+                </li>
+                <li>
+                    @Html.LabelFor(model => model.Destination, "Место назначения", htmlAttributes: new { @class = "num_reis" })
+                    <div class="cont_inf">
+                        @Html.EditorFor(model => model.Destination, new { htmlAttributes = new { @class = "Punkt_otp" } })
+                        <span class="form_hint"> @Html.ValidationMessageFor(model => model.Destination, "", new { @class = "place_destion" })</span>
+                    </div>
+                </li>
+                <li>
+                    @Html.LabelFor(model => model.Date_arrival, "Дата прибытия", htmlAttributes: new { @class = "num_reis" })
+                    <div class="cont_inf">
+                        @Html.EditorFor(model => model.Date_arrival, new { htmlAttributes = new { @class = "Punkt_otp hotel_content datepicker-here", data_timepicker = "true", @readonly = "readonly" } })
+                        @Html.ValidationMessageFor(model => model.Date_arrival, "", new { @class = "dt_otb" })
+                    </div>
+                </li>
+                <li>
+
+                    @Html.LabelFor(model => model.Departure_date, "Дата отъезда ", htmlAttributes: new { @class = "num_reis" })
+                    <div class="cont_inf">
+                        @Html.EditorFor(model => model.Departure_date, new { htmlAttributes = new { @class = "Punkt_otp hotel_content datepicker-here", data_timepicker = "true", @readonly = "readonly" } })
+                        @Html.ValidationMessageFor(model => model.Departure_date, "", new { @class = "date_Departure" })
+                    </div>
+                </li>
+
+                <li class="button_inf">
+                    <div class="but_reis_content">
+                        <input type="submit" value="Сохранить" class="save_edit_reis" />
+                        <div class="Save_reis">
+                            <a class="back_reis button_back" href="/reis/Index"><span>&#8594;</span>Назад<span>&#8592;</span></a>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </form>
+    }
+
+
+</div>
+

@@ -1,0 +1,89 @@
+﻿@model IEnumerable<BigTravel_Company.Models.Vouchers>
+
+@{
+    ViewBag.Title = "Путевки";
+}
+<div class="search_turs">
+    <h2 class="our-services__tle our-services__title--line">
+        Путевки
+    </h2>
+</div>
+
+<style>
+    .error_filter {
+        font-family: "Montserrat";
+        font-style: italic;
+        font-weight: 800;
+        line-height: 33px;
+        text-align: center;
+        justify-content: center;
+        color: #363636;
+        margin: 50px;
+    }
+</style>
+<div class="container">
+    <div class="offers">
+        @if (Model.Count() == 0 || Model == null)
+        {
+            <p class="error_filter">По вашему запросу ничего не найдено</p>
+        }
+        else
+        {
+            foreach (var item in Model)
+            {
+                <div class="offer">
+                    <div class="offer__header">
+                        <h2 class="offer__title">
+                            @Html.DisplayFor(modelItem => item.name_vouchers)
+                        </h2>
+                    </div>
+                    <div class="offer__body">
+                        <div class="offer__body-img">
+                            <img src="~/Content/image/Vouchers/@Html.DisplayFor(modelItem => item.image)" />
+                        </div>
+                        <div class="offer__body-content">
+                            <p>
+                                <b>Место назначения:</b> @Html.DisplayFor(modelItem => item.Route.Country.Name_country)<br>
+                                <b>Дата отбытия:</b> @Html.DisplayFor(modelItem => item.Departure_date) <br />
+                                <b>Дата прибытия:</b> @Html.DisplayFor(modelItem => item.Date_arrival) <br />
+                                <b> Стоимость:</b> @Html.DisplayFor(modelItem => item.Cost)  руб.<br />
+                                @Html.DisplayFor(modelItem => item.Information_vouchers)<br />
+                                <b>Экскурсия:</b> @Html.DisplayFor(modelItem => item.Excursions)
+                            </p>
+                        </div>
+                    </div>
+                    <div class="offer_vouch">
+                        @if (User.IsInRole("Customer"))
+                        {
+                            <div class="offer__body-footer">
+                                <div class="button bron">
+                                    <a href="/Orders/Create/@item.id_vouchers" class="image">Забронировать</a>
+                                </div>
+                            </div>
+                        }
+
+                        @if (User.IsInRole("Employes"))
+                        {
+                            <div class="inner"><button class="button vouch">@Html.ActionLink("Редактировать", "Edit", new { id = item.id_vouchers }, new { @class = "link" })</button></div>
+                        }
+
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            <div class="inner"><button class="button vouch">@Html.ActionLink("Подробная информация", "Details", new { id = item.id_vouchers }, new { @class = "link" })</button></div>
+                        }
+                        @if (User.IsInRole("Employes"))
+                        {
+                            <div class="inner"><button class="button vouch">@Html.ActionLink("Удалить", "Delete", new { id = item.id_vouchers }, new { @class = "link" }) </button></div>
+                        }
+                    </div>
+                </div>
+            }
+        }
+    </div>
+</div>
+@if (User.IsInRole("Employes"))
+{
+    <div class="offer__body-footer">
+        <button class="button bron"> @Html.ActionLink("Добавить путевку", "Create")</button>
+    </div>
+}

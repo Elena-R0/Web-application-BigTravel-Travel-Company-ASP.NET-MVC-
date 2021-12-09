@@ -1,0 +1,76 @@
+﻿@model IEnumerable<BigTravel_Company.Models.Vouchers>
+@*@model BigTravel_Company.Models.Vouchers*@
+
+@{
+    ViewBag.Title = "Home Page";
+}
+
+@section Scripts {
+    <script type="text/javascript" src="~/Scripts/datepicker.js"></script>
+}
+
+
+
+<div class="popul">
+    <div class="container">
+        <h2 class="our-services__title">
+            Наши предложения
+        </h2>
+    </div>
+</div>
+@*@if (ViewBag.Error != null)
+    {
+        <label>@ViewBag.Error</label>
+    }*@
+@if (!string.IsNullOrEmpty(ViewBag.Error))
+{
+    <p>@ViewBag.Error</p>
+}
+<div class="container">
+    @foreach (var item in Model)
+    {
+        <div class="offer">
+            <div class="offer__header">
+                <h2 class="offer__title">
+                    @Html.DisplayFor(modelItem => item.name_vouchers)
+                </h2>
+            </div>
+            <div class="offer__body">
+                <div class="offer__body-img">
+                    <img src="~/Content/image/Vouchers/@Html.DisplayFor(modelItem => item.image)" class="image" />
+                </div>
+                <div class="offer__body-content">
+                    <p>
+                        <b>Место назначения:</b> @Html.DisplayFor(modelItem => item.Route.Country.Name_country)<br>
+                        <b>Дата отбытия:</b> @Html.DisplayFor(modelItem => item.Departure_date) <br />
+                        <b>Дата прибытия:</b> @Html.DisplayFor(modelItem => item.Date_arrival) <br />
+                        <b> Стоимость:</b> @Html.DisplayFor(modelItem => item.Cost)  руб.<br />
+                        @Html.DisplayFor(modelItem => item.Information_vouchers)<br />
+                        <b>Экскурсия:</b> @Html.DisplayFor(modelItem => item.Excursions)
+                    </p>
+                </div>
+            </div>
+            @if (User.IsInRole("Customer"))
+            {
+                <div class="offer__body-footer">
+                    <div class="button bron">
+                        <a href="/Orders/Create/@item.id_vouchers" class="image">Забронировать</a>
+                    </div>
+                </div>
+            }
+            else
+            {
+
+            }
+        </div>
+    }
+    @using (Html.BeginForm("Index", "Vouchers", FormMethod.Post))
+    {
+        @Html.AntiForgeryToken()
+        @Html.Action("Search", "Vouchers")
+        <div class="search_btn">
+            <button class="button search" type="submit">Найти тур</button>
+        </div>
+    }
+
+</div>
